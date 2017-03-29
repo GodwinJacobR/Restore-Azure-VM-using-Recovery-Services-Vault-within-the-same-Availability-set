@@ -1,0 +1,9 @@
+# Restore-Azure-VM-using-Recovery-Services-Vault-within-the-same-Availability-set
+## Azure Recovery Services Vault:
+
+When you have a cloud environment with large number of virtual machines, backup is one key aspect. Managing the backup of these machines itself is a bigger overhead. Azure Recovery Services Vault is one such service provided by Microsoft Azure to backup Azure Virtual machines and to restore them. This service can be used to backup both Windows and Linux servers. Backup can be scheduled for the Azure Virtual Machines and the backed up data is being sent to Azure Vault, which is a highly available storage solution completely managed by Azure. The scheduling of backup of these machines can be done using backup policies. And these VMs can be restored to any restore points. One can create crash-consistent backup or a file-system backup for VMs. Unlike crash-consistent restore points, restoration to file-system restore point does not require the shutting down of the VM.
+
+## Why to restore within an Availability set:
+
+Azure Recovery Services Vault help you in restoring Virtual Machines to earlier restore points in two ways. One way is to restore just the disks and the other method is to restore into a completely new Virtual Machine. But the major draw back of the later option is that the restored VMs are not part of any Availability set. Ideally the restored VM must be part of the same Availability set as that of the original VM. By putting your machines in an Availability set, Azure understands that the VMs serve the same purpose and in turn Azure makes sure the VMs are highly available by assigning them different Fault domain and Update domain. Also to avail the Azure SLA(Service Level Agreement) of 99.95% of up time of Azure VMs, the VMs have to be in an availability set. So the restored VM, not being part of any availability sets is a bigger concern.
+
